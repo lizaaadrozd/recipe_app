@@ -3,9 +3,7 @@
 <ul>
   <% @recipes.each do |recipe| %>
     <li>
-      <a href="/recipes/<%= recipe.id %>">
-        <%= recipe.name %>
-      </a>
+      <%= link_to recipe.name, recipe %>
     </li>
   <% end %>
 </ul>
