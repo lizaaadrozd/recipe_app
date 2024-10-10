@@ -2,3 +2,10 @@
 
 <p>Quantity: <%= @ingredient.quantity %></p>
 
+<ul>
+  <li><%= link_to "Edit", edit_ingredient_path(@ingredient) %></li>
+  <li><%= link_to "Destroy", ingredient_path(@ingredient), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %></li>
+</ul>
