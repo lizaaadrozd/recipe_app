@@ -2,5 +2,20 @@
 
 <p>Description: <%= @recipe.description %></p>
 <p>Complexity: <%= @recipe.complexity %></p>
-<p>Ingredients: <%= @recipe.ingredients %></p>
+<p>Ingredients:
+  <% @recipe.ingredients.each do |ingredient| %>
+    <%= "#{ingredient.quantity} of #{ingredient.name}, "%>
+  <% end %>
+</p>
 <p>Is vegan: <%= @recipe.is_vegan %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+  <li><%= link_to "Destroy", recipe_path(@recipe), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %></li>
+</ul>
+
+<%= link_to "Go to recipes list", recipes_path %>
+

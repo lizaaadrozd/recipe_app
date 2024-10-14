@@ -1,0 +1,52 @@
+<%= form_with model: recipe do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% recipe.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %><br>
+    <% recipe.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :complexity %><br>
+    <%= form.select :complexity, ["easy", "intermediate", "hard", "advanced"] %><br>
+    <% recipe.errors.full_messages_for(:complexity).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :ingredient_ids, "Select Ingredients" %><br>
+    <% Ingredient.all.each do |ingredient| %>
+      <%= form.check_box :ingredient_ids, { multiple: true }, ingredient.id, nil %>
+      <%= form.label :ingredient, "#{ingredient.quantity} of #{ingredient.name}"%><br>
+    <% end %>
+    <%= link_to "Or create a new ingredient", new_ingredient_path %><br>
+    <% recipe.errors.full_messages_for(:ingredients).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :is_vegan %><br>
+    <%= form.radio_button :is_vegan, true %>
+    <%= form.label :is_vegan_true, "Yes" %><br>
+    <%= form.radio_button :is_vegan, false %>
+    <%= form.label :is_vegan_false, "No" %><br>
+    <% recipe.errors.full_messages_for(:is_vegan).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
