@@ -17,7 +17,7 @@
 
   <div>
     <%= form.label :complexity %><br>
-    <%= form.select :complexity, ["easy", "intermediate", "hard", "advanced"] %><br>
+    <%= form.select :complexity, Recipe.complexities.keys %><br>
     <% recipe.errors.full_messages_for(:complexity).each do |message| %>
       <div><%= message %></div>
     <% end %>
