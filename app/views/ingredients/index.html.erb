@@ -4,9 +4,10 @@
   <% @ingredients.each do |ingredient| %>
     <li>
       <%= link_to ingredient.name, ingredient %>
-      (<%= ingredient.quantity %>)
+      (<%= "You need #{ingredient.quantity} of #{ingredient.name}" %>)
     </li>
   <% end %>
 </ul>
 
-<%= link_to "New Ingredient", new_ingredient_path %>
+<%= link_to "New Ingredient", new_ingredient_path %><br>
+<%= link_to "Go to recipes list", recipes_path %>

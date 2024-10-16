@@ -2,5 +2,28 @@
 
 <p>Description: <%= @recipe.description %></p>
 <p>Complexity: <%= @recipe.complexity %></p>
-<p>Ingredients: <%= @recipe.ingredients %></p>
+<p>Ingredients:
+  <% @recipe.ingredients.each do |ingredient| %>
+    <%= "#{ingredient.quantity} of #{ingredient.name}, "%>
+  <% end %>
+</p>
+<p>
+  <% if @recipe.is_vegan %>
+    <img src="https://www.barry-callebaut.com/sites/default/files/styles/paragraph_text_and_image_left_right/public/2020-01/CAL%20icon%20VEGAN%20rgb.jpg?itok=8LEg47RA" width=50 height=50 alt="Vegan Icon" />
+  <% else %>
+    <img src="https://ih1.redbubble.net/image.971460133.0974/st,small,507x507-pad,600x600,f8f8f8.jpg" width=80 height=80 alt="Non-Vegan Icon" />
+  <% end %>
+</p>
+
 <p>Is vegan: <%= @recipe.is_vegan %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+  <li><%= link_to "Destroy", recipe_path(@recipe), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %></li>
+</ul>
+
+<%= link_to "Go to recipes list", recipes_path %>
+
